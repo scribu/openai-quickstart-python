@@ -10,12 +10,18 @@
 
 <body>
   <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
+  <h3>Explaining emphasis</h3>
   <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
-    <input type="submit" value="Generate names" />
+	  <input name="input" placeholder="Input" required value="{{input}}"/>
+	  <input id="temperature" type="range" min="0" max="1.0" step="0.1" name="temperature" value="{{ temperature }}" />Temperature:<span id="temperature-render">{{ temperature }}</span>
+    <input type="submit" value="Generate" />
   </form>
+	  <script type="text/javascript">
+document.getElementById("temperature").oninput = function() {
+  document.getElementById("temperature-render").innerHTML = this.value;
+}
+	  </script>
   {% if result %}
-  <div class="result">{{ result }}</div>
+  <pre>{{ result }}</pre>
   {% endif %}
 </body>
